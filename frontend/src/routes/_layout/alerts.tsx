@@ -170,6 +170,7 @@ function AlertPage() {
               </div>
               <div>{t("alertDashboard.rowLabels.name")}</div>
               <div>{t("alertDashboard.rowLabels.severity")}</div>
+              <div>{t("alertDashboard.rowLabels.category")}</div>
             </div>
             <div className="grid gap-2">
               {filteredData.length === 0 && (
@@ -232,6 +233,9 @@ function AlertPage() {
                   >
                     {item.severity}
                   </div>
+                  <div className="font-semibold">
+                    {item.category}
+                  </div>                  
                   <div className="hidden md:inline">
                     <Button variant="ghost" size="icon">
                       <LuChevronRight />

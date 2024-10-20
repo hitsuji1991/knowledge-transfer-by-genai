@@ -11,7 +11,16 @@ export type Alert = {
   closedAt: string;
   status: Status;
   severity: Severity;
+  category: string;
   comment: string;
   meetingIds: string[];
   conversation: Conversation;
 };
+
+export type ChartProps = {
+  measure_name: string;
+  measure_values: {
+    timestamp: string;
+    measure_value: number;
+  }[];
+}[];

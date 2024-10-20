@@ -52,6 +52,12 @@ function AlertDetailCard({ item }: { item: Alert }) {
           </div>
           <div>
             <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              エラーコード：
+            </label>
+            <div>{item.category}</div>
+          </div>
+          <div>
+            <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
               名前：
             </label>
             <div>{item.name}</div>

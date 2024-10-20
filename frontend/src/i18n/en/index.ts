@@ -14,6 +14,7 @@ const translation = {
         dateTimeClosed: "Closed Date",
         name: "Name",
         severity: "Severity",
+        category: "Error Code",
       },
     },
   },

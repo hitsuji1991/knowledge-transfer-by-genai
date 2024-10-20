@@ -19,6 +19,7 @@ const translation = {
         dateTimeClosed: "クローズ日時",
         name: "名前",
         severity: "重要度",
+        category: "エラーコード"
       },
     },
     alertDetail: {
