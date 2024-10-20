@@ -11,6 +11,11 @@ import { CloudFrontGateway } from "./constructs/cloudfront-gateway";
 import { UsEast1Stack } from "./us-east-1-stack";
 import { FunctionUrlAuthType, InvokeMode } from "aws-cdk-lib/aws-lambda";
 import { ChunkingStrategy } from "@cdklabs/generative-ai-cdk-constructs/lib/cdk-lib/bedrock";
+import { IotPipeline } from "./constructs/iot-pipeline";
+import { ErrorDetector } from "./constructs/error-detector";
+import { AlertsTimeseriesApi } from "./constructs/alerts-timeseries-api";
+
+
 
 export type BedrockModelId =
   | "anthropic.claude-v2:1"
@@ -38,6 +43,36 @@ export class KnowledgeTransferStack extends cdk.Stack {
     const auth = new Auth(this, "Auth");
     const database = new Database(this, "Database");
     const buckets = new S3Buckets(this, "S3Buckets");
+
+    const errorDetector = new ErrorDetector(this, "ErrorDetector", {
+      alertsTable: database.alertTable,
+      errordbTableName: "error_info_table",
+      ruleName: "proc_demo_iot_publish_error_topic_rule",
+    });
+    
+    
+    // IoT Pipeline to store PLC data in Timestream
+    const iotPipeline = new IotPipeline(this, "IotPipeline", {
+      databaseName: database.timeseriesDatabase.databaseName!,
+      tableName: database.timeseriesTable.tableName!,
+      ruleName: "proc_demo_iot_database_rule",
+    });
+    database.grantWrite(iotPipeline.writeRole);
+
+
+    // Alerts API for intercting with DynamoDB
+    const alertsTimeseriesApi = new AlertsTimeseriesApi(
+      this,
+      "AlertsTimeseriesAPI",
+      {
+        alertsTable: database.alertTable,
+        auth: auth,
+        timeseriesDatabase: database.timeseriesDatabase,
+        timeseriesTable: database.timeseriesTable,
+      }
+    );
+
+
 
     // Video Call using Chime
     const videoCall = new VideoCall(this, "VideoCall", {
