@@ -7,10 +7,14 @@ import { useTranslation } from "react-i18next";
 import { PiWarningCircleFill } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import SwitchBedrockModel from "./SwitchBedrockModel";
+//import { useState } from 'react';
 
-const Chat: React.FC<{ alertId: string }> = (props) => {
-  const { alertId } = props;
+
+const Chat: React.FC<{ alertId: string, alertCategory: string }> = (props) => {
+  const { alertId, alertCategory } = props;
   const { t } = useTranslation();
+
+  //const [needInitSend, setNeedInitSend] = useState(false);
 
   const {
     conversationError,
@@ -28,6 +32,19 @@ const Chat: React.FC<{ alertId: string }> = (props) => {
       console.error(conversationError.message ?? "");
     }
   }, [conversationError]);
+  
+
+
+  // Start First Conversation
+  /*
+  useEffect(() => {
+    if (messages.length == 0) {
+      onSend(alertCategory);
+      setNeedInitSend(false);
+    }
+  }, [needInitSend]);
+  */
+
 
   const { scrollToBottom, scrollToTop } = useScroll();
 
@@ -36,6 +53,7 @@ const Chat: React.FC<{ alertId: string }> = (props) => {
       scrollToBottom();
     } else {
       scrollToTop();
+      onSend(alertCategory + 'についてエラーの詳細情報と対処方法について教えて');
     }
   }, [messages, scrollToBottom, scrollToTop]);
 

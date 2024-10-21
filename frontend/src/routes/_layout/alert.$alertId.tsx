@@ -65,7 +65,7 @@ function AlertDetailPage(props: ComponentProps) {
           </ScrollArea>
         </div>
         <div className="relative flex flex-col bg-secondary">
-          {alert && <Chat alertId={alert.id} />}
+          {alert && <Chat alertId={alert.id} alertCategory={alert.category} />}
         </div>
       </div>
     </>
