@@ -11,6 +11,7 @@ import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 
 import { Status, Severity, Alert } from "../@types";
 
+
 const ALERT_TABLE_NAME = process.env.ALERT_TABLE_NAME || "alert_table";
 
 const dynamoDb = new DynamoDBClient({});

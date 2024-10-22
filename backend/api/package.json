@@ -23,6 +23,7 @@
     "@aws-sdk/client-bedrock-agent-runtime": "^3.632.0",
     "@aws-sdk/client-bedrock-runtime": "^3.632.0",
     "@aws-sdk/client-s3": "^3.633.0",
+    "@aws-sdk/client-timestream-query": "^3.675.0",
     "@aws-sdk/s3-request-presigner": "^3.633.0",
     "@industrial-knowledge-transfer-by-genai/common": "file:../common",
     "@nestjs/common": "^10.0.0",

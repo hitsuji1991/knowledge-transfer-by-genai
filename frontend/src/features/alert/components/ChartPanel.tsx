@@ -29,6 +29,8 @@ function ChartPanel({
   // );
 
   const dataSets = data.map((measure, index) => {
+    console.log('[Debug]dataSets is Called')
+    console.log('[Debug] measure is ', measure)
     return {
       label: measure.measure_name,
       data: measure.measure_values.map((measure_value) => {

@@ -51,6 +51,8 @@ export class Api extends Construct {
         KNOWLEDGE_BASE_ID: props.knowledge.knowledgeBaseId,
         BEDROCK_REGION: props.bedrockRegion,
         BEDROCK_AGENT_REGION: Stack.of(props.knowledge).region,
+        TIMESTREAM_DATABASE_NAME:database.timeseriesDatabase.databaseName!,
+        TIMESTREAM_TABLE_NAME:database.timeseriesTable.tableName!,
       },
     });
     database.alertTable.grantReadWriteData(handler.role!);
@@ -73,6 +75,12 @@ export class Api extends Construct {
         resources: [props.knowledge.knowledgeBaseArn],
       })
     );
+    handler.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ["timestream:*"],
+        resources: ["*"],
+      })
+    );    
 
     this.handler = handler;
   }

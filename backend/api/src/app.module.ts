@@ -4,9 +4,10 @@ import { AppService } from "./app.service";
 import { AlertModule } from "./alert/alert.module";
 import { ChatModule } from "./chat/chat.module";
 import { LoggerMiddleware } from "./middleware";
+import { PlcModule } from "./plc/plc.module"
 
 @Module({
-  imports: [AlertModule, ChatModule],
+  imports: [AlertModule, ChatModule, PlcModule],
   controllers: [AppController],
   providers: [AppService],
 })

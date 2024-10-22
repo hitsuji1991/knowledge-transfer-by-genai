@@ -14,3 +14,11 @@ export type Alert = {
   meetingIds: string[];
   conversation: Conversation;
 };
+
+/*
+export type Plc ={
+    time: string;
+    measurename: string;
+    value: string;
+};
+*/

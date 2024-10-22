@@ -44,14 +44,18 @@ const useChart = ({ loopName, openedAt }: Props) => {
   }, [mode, loopName, openedAt]);
 
   const http = useHttp();
+  console.log('[Debug] Start to load data');
 
   const loadData = async (beginTime: number, endTime: number) => {
     const response = await http.getOnce<ChartProps>(`plc/loops/${loopName}`, {
       start: encodeURI(parseDate(new Date(beginTime))),
       end: encodeURI(parseDate(new Date(endTime))),
     });
+    console.log('[Debug] Finish to load data');
+    console.log('[Debug] response is ', response);
     setChart(response.data);
   };
+  
   return {
     chart,
     mode,

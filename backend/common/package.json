@@ -21,7 +21,10 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.623.0",
+    "@aws-sdk/client-timestream-query": "^3.675.0",
     "@aws-sdk/lib-dynamodb": "^3.623.0",
+    "@types/luxon": "^3.4.2",
+    "luxon": "^3.5.0",
     "typescript": "^5.5.4",
     "uuid": "^10.0.0"
   }
